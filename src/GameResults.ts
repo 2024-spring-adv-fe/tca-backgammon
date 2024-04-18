@@ -15,6 +15,9 @@ export type GameResult = {
     players: string[];
     start: string;
     end: string;
+
+    // 1 - Need to have a place to store your player doubles...
+    // playerDoubles: [string, number][];
 };
 
 export type LeaderboardEntry = {
@@ -140,17 +143,22 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
         x => x.players.some(
             y => y === player
         )
-    ).length;
+    );
+
+    // 3 - Get the players doubles from the playerGames.
+    // 4 - Sum the players doubles.
 
     return {
         wins: playerWins
-        , losses: playerGames - playerWins
+        , losses: playerGames.length - playerWins
 
-        , avg: playerGames > 0
-            ? playerWins / playerGames
+        , avg: playerGames.length > 0
+            ? playerWins / playerGames.length
             : 0
             
         , name: player
+
+        // 5 - Change "batu" below to the avg (division), and maybe with a toFixed(2) to make it a string.
         , abgPlayerDoubles: "batu"
     };
 };
