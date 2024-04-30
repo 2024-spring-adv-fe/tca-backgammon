@@ -17,7 +17,7 @@ export type GameResult = {
     end: string;
 
     // 1 - Need to have a place to store your player doubles...
-    // playerDoubles: [string, number][];
+    playerDoubles?: [string, number][];
 };
 
 export type LeaderboardEntry = {
@@ -146,7 +146,19 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
     );
 
     // 3 - Get the players doubles from the playerGames.
-    // 4 - Sum the players doubles.
+    const playerDoubles = playerGames
+        .flatMap(
+            x => x.playerDoubles?.filter(
+                y => y[0] === player
+            )
+        )
+        .map(x => x ? x[1] : 0)
+    ;
+
+    const playerDoublesTotal = playerDoubles.reduce(
+        (acc, x) => acc + x
+        , 0
+    );
 
     return {
         wins: playerWins
@@ -159,7 +171,7 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
         , name: player
 
         // 5 - Change "batu" below to the avg (division), and maybe with a toFixed(2) to make it a string.
-        , abgPlayerDoubles: "batu"
+        , abgPlayerDoubles: (playerDoublesTotal / playerGames.length).toFixed(2)
     };
 };
 

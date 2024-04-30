@@ -87,7 +87,7 @@ export const Play: FC<PlayProps> = ({
                   end: new Date().toISOString(),
 
                   // 2 - Then store your doubles when a game is over...
-                  //playerDoubles: playerDoubles
+                  playerDoubles: playerDoubles
                 });
                 nav(-2);
               }}
