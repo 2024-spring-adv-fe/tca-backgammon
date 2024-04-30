@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { GeneralFacts, LeaderboardEntry } from './GameResults';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import PieChart from "./PieChart";
 
 export const AppTitle = "Backgammon Companion App";
@@ -25,6 +25,8 @@ export const Home: FC<HomeProps> = ({
     ,generalFacts
     , avgGameDurationsByPlayerCount
  }) => {
+
+    const [playerForChart, setPlayerForChart] = useState("");
 
     console.log(avgGameDurationsByPlayerCount);
     useEffect(
@@ -103,6 +105,7 @@ export const Home: FC<HomeProps> = ({
                                         <th>AVG</th>
                                         <th>PLAYER</th>
                                         <th>AVG PLAYER DOUBLE</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -116,6 +119,14 @@ export const Home: FC<HomeProps> = ({
                                                 <td>{ lbe.avg.toFixed(3) }</td>
                                                 <td>{ lbe.name }</td>
                                                 <td>{ lbe.abgPlayerDoubles }</td>
+                                                <td>
+                                                    <button 
+                                                        className="btn btn-link"
+                                                        onClick={() => setPlayerForChart(lbe.name)}
+                                                    >
+                                                        Chart
+                                                    </button>
+                                                </td>
                                             </tr>
                                         ))
                                     }
@@ -195,7 +206,7 @@ className=
         <h1
             className='card-title mt-4 flex justify-center items-center h-full w-full'
         >
-            Chosen Player
+            { playerForChart }
         </h1>
     </div>
 
