@@ -1,7 +1,10 @@
 import React, {useEffect,useRef} from 'react'
 import { Chart } from 'chart.js/auto'
 
-export default function PieChart() {
+export default function PieChart({playerForChart, leaderboardData}) {
+
+    console.log(playerForChart, leaderboardData);
+
     const chartRef = useRef (null);
     const chartInstance = useRef (null);
 

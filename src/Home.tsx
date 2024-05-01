@@ -213,7 +213,10 @@ className=
     className=
     'card-title mt-4 flex justify-center items-center h-full w-full'
     >
-        <PieChart />
+        <PieChart 
+            playerForChart={playerForChart}
+            leaderboardData={leaderboardData}
+        />
     </div>
 </div>
 
