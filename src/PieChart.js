@@ -16,6 +16,8 @@ export default function PieChart({playerForChart, leaderboardData}) {
 
          const myChartRef = chartRef.current.getContext('2d');
 
+         const wins = 10;
+         const losses = 10;
 
          chartInstance.current = new Chart(myChartRef,{
             type:"pie",
@@ -25,7 +27,7 @@ export default function PieChart({playerForChart, leaderboardData}) {
 
 
                     {
-                        data: [300, 50,],
+                        data: [wins, losses,],
                         backgroundColor: [
                         'rgb(60, 179, 113)',
                         'rgb(54, 162, 235)',
