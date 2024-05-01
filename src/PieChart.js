@@ -3,8 +3,7 @@ import { Chart } from 'chart.js/auto'
 
 export default function PieChart({playerForChart, leaderboardData}) {
 
-    console.log(playerForChart, leaderboardData);
-
+    // console.log(playerForChart, leaderboardData);
     const chartRef = useRef (null);
     const chartInstance = useRef (null);
 
@@ -16,8 +15,10 @@ export default function PieChart({playerForChart, leaderboardData}) {
 
          const myChartRef = chartRef.current.getContext('2d');
 
-         const wins = 10;
-         const losses = 10;
+         const leaderboardEntryToChart = leaderboardData.find(x => x.name === playerForChart);
+         console.log(leaderboardEntryToChart);
+         const wins = leaderboardEntryToChart?.wins ?? 0;
+         const losses = leaderboardEntryToChart?.losses ?? 0;
 
          chartInstance.current = new Chart(myChartRef,{
             type:"pie",
@@ -43,7 +44,7 @@ export default function PieChart({playerForChart, leaderboardData}) {
                 chartInstance.current.destroy()
             }
          }
-    }, []);
+    }, [playerForChart]);
 
     return (
         <div
